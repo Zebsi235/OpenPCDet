@@ -643,6 +643,12 @@ def get_official_eval_result(gt_annos, dt_annos, current_classes, PR_detail_dict
     overlap_0_5 = np.array([[0.7, 0.5, 0.5, 0.7,
                              0.5, 0.5], [0.5, 0.25, 0.25, 0.5, 0.25, 0.5],
                             [0.5, 0.25, 0.25, 0.5, 0.25, 0.5]])
+    # overlap_0_7 = np.array([[0.3, 0.2, 0.2, 0.3, 0.2, 0.3], 
+    #                         [0.3, 0.2, 0.2, 0.3, 0.2, 0.3],
+    #                         [0.3, 0.2, 0.2, 0.3, 0.2, 0.3]])
+    # overlap_0_5 = np.array([[0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 
+    #                         [0.0, 0.00, 0.00, 0.0, 0.00, 0.0],
+    #                         [0.0, 0.00, 0.00, 0.0, 0.00, 0.0]])
     min_overlaps = np.stack([overlap_0_7, overlap_0_5], axis=0)  # [2, 3, 5]
     class_to_name = {
         0: 'Car',
