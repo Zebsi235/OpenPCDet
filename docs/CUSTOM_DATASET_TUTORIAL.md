@@ -95,6 +95,18 @@ python -m pcdet.datasets.custom.custom_dataset create_custom_infos tools/cfgs/da
 ```
 
 
+
+
+## Training
+To start the training with a custom model configuration, the config has to exist in ```/app/OpenPCDet/tools/cfgs/custom_models/```
+
+It can be executed with: 
+``` cd /app/OpenPCDet/tools && python3 train.py --cfg_file cfgs/custom_models/model_config.yaml --epoch 50 ```
+
+
+
+
+
 ## Evaluation
 Here, we only provide an implementation for KITTI stype evaluation.
 The category mapping between custom dataset and KITTI need to be defined 
@@ -106,3 +118,21 @@ MAP_CLASS_TO_KITTI: {
     'Cyclist': 'Cyclist',
 }
 ```
+
+## Get ssh connection for visualisation
+1. ```docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' openpcdet ```
+1. ```docker exec -it openpcdet  sh```
+1. type ```passwd``` to change the root password
+1. change the line "PermitRootLgin" in /etc/ssh/sshd_config to yes
+1. restart ssh ```/etc/init.d/ssh restart``` and disconnect from the docker container 
+1. login through ssh with ```ssh -X -p 2222 root@172.X.X.X```
+
+
+## Test | this only shows prediction boxes 
+```python3 demo.py --data_path <path to points (folder)> --ext .npy --ckpt <path to checkpoint file (.pth file)> --cfg_file <path to model configuration file (.yaml file)>```
+
+## Test | this shows prediction boxes (green) and ground truth (blue) 
+```python3 demo-gt.py --data_path <path to points (folder)> --ext .npy --ckpt <path to checkpoint file (.pth file)> --cfg_file <path to model configuration file (.yaml file)>```
+
+# Re-evaluating the trained model/checkpoint
+```python3 test.py --ckpt <path to checkpoint file (.pth file)> --cfg_file <path to model configuration file (.yaml file)>```

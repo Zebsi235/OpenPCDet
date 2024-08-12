@@ -2,7 +2,7 @@
 services:
   openpcdet:
     image: openpcdet-image:V1
-    container_name: openpcdet-test
+    container_name: openpcdet
     build:
       context: .
       dockerfile: Dockerfile

@@ -1,5 +1,23 @@
 # Installation
 
+You can either use a docker container to install the framework or build the environment like in the Installation script provided by openmmlab.
+
+## Docker
+
+1. Have Docker installed on your machine
+1. cd into docker folder of this repository
+1. run ``` docker compose up -d```. This should build the image based on the "Dockerfile" and create a container called "openpcdet"
+
+I you intend to install tensorboard please use following commands inside the container:
+
+1. ```pip install tensorboard && tensorboard --logdir /app/OpenPCDet/output/custom_models --bind_all```
+1. Tensorboard will be available on localhost:6006 on the device where the container is running
+
+To foreward this port of a remote server to your local device use:
+```ssh -N -L 6006:localhost:6006 <username>@<ip-adress> -i <private key to use or login, noramlly located in ~/.ssh/id_...>```
+
+## OpenMMLab Installation
+
 ### Requirements
 All the codes are tested in the following environment:
 * Linux (tested on Ubuntu 14.04/16.04/18.04/20.04/21.04)
